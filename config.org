@@ -1,0 +1,220 @@
+** general.el
+#+BEGIN_SRC emacs-lisp
+(use-package which-key :ensure t
+  :config
+  (which-key-mode 1)
+  )
+
+(use-package general :ensure t
+  :config
+  (general-define-key
+   :states '(normal visual emacs)
+   :keymaps 'override
+   :prefix "SPC"
+   :non-normal-prefix "C-SPC"
+   "b" 'switch-to-buffer
+   "d" 'evil-goto-definition
+   "f" 'find-file
+   "i" 'imenu
+   "j" 'cider-jack-in
+   "p" '(:keymap projectile-command-map :wk "projectile prefix" :package projectile)
+   "r" 'cider-switch-to-repl-buffer
+   "g" 'magit-status
+   "m" 'magit-dispatch
+   ";" 'avy-goto-char
+   "l" 'mc/edit-lines
+   )
+  )
+#+END_SRC
+
+** move lines
+#+BEGIN_SRC emacs-lisp
+(defun move-line-up ()
+"Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(defun move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(global-set-key [(meta shift up)]  'move-line-up)
+(global-set-key [(meta shift down)]  'move-line-down)
+#+END_SRC
+
+** C-c keybindings
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c i") (lambda() (interactive)(find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "C-c o") (lambda() (interactive)(find-file "~/.emacs.d/config.org")))
+(global-set-key (kbd "C-c j") 'join-line)
+(global-set-key (kbd "C-c r") (lambda() (interactive)(load-file "~/.emacs.d/init.el")))
+#+END_SRC
+
+** custom theme
+*** doom
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :config (load-theme 'doom-opera t)
+  )
+#+END_SRC
+
+*** else
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+  :ensure t
+  )
+
+(use-package all-the-icons
+  :ensure t
+  )
+
+(setq delete-old-versions -1 )		; delete excess backup versions silently
+(setq coding-system-for-read 'utf-8 )	; use utf-8 by default
+(setq coding-system-for-write 'utf-8 )
+(setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
+(setq default-fill-column 80)		; toggle wrapping text at the 80th character
+(setq initial-scratch-message "") ; print a default message in the empty scratch buffer opened at startup
+(setq make-backup-files nil) ; disable ~ files
+(setq create-lockfiles nil) ;disable # files
+
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(blink-cursor-mode 0)
+(global-linum-mode t)
+#+END_SRC
+
+** evil
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :config
+  (evil-mode 1)
+  )
+
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode 1)
+  )
+#+END_SRC
+
+** git
+#+BEGIN_SRC emacs-lisp
+(use-package magit 
+  :ensure t
+  )
+#+END_SRC
+
+** code navigation
+#+BEGIN_SRC emacs-lisp
+(use-package avy 
+  :ensure t
+  )
+
+(use-package expand-region
+  :ensure t
+  :bind (("<f7>" . er/expand-region))
+  )
+#+END_SRC
+
+** clojure
+#+BEGIN_SRC emacs-lisp
+(use-package clj-refactor
+  :bind (("C-c n" . cljr-clean-ns))
+  )
+
+(use-package cider)
+(use-package clojure-mode)
+
+(defun my-clojure-mode-hook ()
+    (rainbow-delimiters-mode 1)
+    (clj-refactor-mode 1)
+    (yas-minor-mode 1) 
+    (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
+
+
+(defun my-paredit-hook ()
+  (paredit-mode 1))
+
+(add-hook 'clojure-mode-hook 'my-paredit-hook)
+#+END_SRC
+
+** markown
+#+BEGIN_SRC emacs-lisp
+;; run `brew install pandoc` once
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\.markdown\\'" . markdown-mode))
+  :init (custom-set-variables '(markdown-command "/usr/local/bin/pandoc")))
+#+END_SRC
+
+** ivy, counsel, projectile
+#+BEGIN_SRC emacs-lisp
+(use-package ivy
+  :ensure t
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  )
+
+(use-package counsel
+  :ensure t
+  :config
+  (counsel-mode 1))
+
+(use-package projectile
+  :ensure t
+  :config 
+  (projectile-mode +1)
+  )
+
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode 1)
+  )
+
+#+END_SRC
+
+** yaml
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :ensure t
+  :config (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+)
+#+END_SRC
+
+** leinigen
+Add leinigen to execution path
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'exec-path "/Users/shengl/bin")
+#+END_SRC
+
+** neotree
+#+BEGIN_SRC emacs-lisp
+(use-package neotree 
+  :ensure t
+  :bind (("<f8>" . neotree-toggle))
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (setq neo-window-fixed-size nil)
+)
+#+END_SRC
+
+** commenting
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "s-/") 'comment-line)
+#+END_SRC
+

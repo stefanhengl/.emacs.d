@@ -1,0 +1,10 @@
+*.backup
+/.mc-lists.el
+/bookmarks
+/conf gig.el
+/elpa
+/transient
+config.el
+network-security.data
+projectile-bookmarks.eld
+recentf
