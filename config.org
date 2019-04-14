@@ -23,6 +23,8 @@
    "l" 'mc/edit-lines
    "]" 'forward-sexp
    "[" 'backward-sexp
+   "b" 'paredit-forward-barf-sexp
+   "s" 'paredit-forward-slurp-sexp
    )
   (general-define-key
    :states '(normal visual emacs)
@@ -33,8 +35,6 @@
    "t" 'cider-test-run-test
    "p" 'cider-test-run-project-tests
    "n" 'cljr-clean-ns
-   "b" 'paredit-forward-barf-sexp
-   "s" 'paredit-forward-slurp-sexp
    )
   )
 #+END_SRC
