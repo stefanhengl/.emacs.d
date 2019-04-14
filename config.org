@@ -135,7 +135,6 @@
 #+BEGIN_SRC emacs-lisp
 (use-package clj-refactor
   :ensure t
-  :bind (("C-c n" . cljr-clean-ns))
   )
 
 (use-package cider
@@ -153,7 +152,6 @@
     (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
-
 
 (defun my-paredit-hook ()
   (paredit-mode 1))
