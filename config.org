@@ -16,13 +16,21 @@
    "d" 'evil-goto-definition
    "f" 'find-file
    "i" 'imenu
-   "j" 'cider-jack-in
    "p" '(:keymap projectile-command-map :wk "projectile prefix" :package projectile)
-   "r" 'cider-switch-to-repl-buffer
    "g" 'magit-status
    "m" 'magit-dispatch
    ";" 'avy-goto-char
    "l" 'mc/edit-lines
+   )
+  (general-define-key
+   :states '(normal visual emacs)
+   :keymaps 'clojure-mode-map
+   :prefix ";"
+   "j" 'cider-jack-in
+   "r" 'cider-switch-to-repl-buffer
+   "t" 'cider-test-run-test
+   "p" 'cider-test-run-project-tests
+   "n" 'cljr-clean-ns
    )
   )
 #+END_SRC
