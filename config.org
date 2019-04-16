@@ -23,7 +23,7 @@
    "l" 'mc/edit-lines
    "]" 'forward-sexp
    "[" 'backward-sexp
-   "b" 'paredit-forward-barf-sexp
+   "S" 'paredit-forward-barf-sexp
    "s" 'paredit-forward-slurp-sexp
    )
   (general-define-key
@@ -35,6 +35,7 @@
    "t" 'cider-test-run-test
    "p" 'cider-test-run-project-tests
    "n" 'cljr-clean-ns
+   "f" 'cider-format-buffer
    )
   )
 #+END_SRC
@@ -120,7 +121,10 @@
 #+BEGIN_SRC emacs-lisp
 (use-package magit 
   :ensure t
-  )
+  :config
+  (global-auto-revert-mode 1)
+  (setq auto-revert-check-vc-info t)
+)
 #+END_SRC
 
 ** code navigation
