@@ -225,6 +225,7 @@
 Add leinigen to execution path
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'exec-path "/Users/shengl/bin")
+(add-to-list 'exec-path "/usr/local/go/bin/")
 #+END_SRC
 
 ** neotree
@@ -274,5 +275,19 @@ Add leinigen to execution path
    `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))
    `(org-block ((t (:background "black"))))
 ))
+#+END_SRC
+
+** go
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode
+  :ensure t
+  :config
+  (progn 
+    (autoload 'go-mode "go-mode" nil t)
+    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+    (electric-pair-mode 1)
+    (add-hook 'before-save-hook #'gofmt-before-save)
+    )
+  )
 #+END_SRC
 
