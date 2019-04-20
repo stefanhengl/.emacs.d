@@ -294,3 +294,12 @@
   )
 #+END_SRC
 
+** iedit
+Use shortcut C-; to mark all occurences. Edit 1 -> change all.
+#+BEGIN_SRC emacs-lisp
+(use-package iedit
+  :ensure t
+  )
+
+#+END_SRC
+
