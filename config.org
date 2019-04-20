@@ -221,11 +221,14 @@
 )
 #+END_SRC
 
-** leinigen
-Add leinigen to execution path
+** exec-path
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'exec-path "/Users/shengl/bin")
-(add-to-list 'exec-path "/usr/local/go/bin/")
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+  )
 #+END_SRC
 
 ** neotree
