@@ -281,6 +281,7 @@
 #+END_SRC
 
 ** go
+Note: Install gocode https://github.com/mdempsky/gocode first, required for go auto-complete.
 #+BEGIN_SRC emacs-lisp
 (use-package go-mode
   :ensure t
@@ -292,6 +293,21 @@
     (add-hook 'before-save-hook #'gofmt-before-save)
     )
   )
+
+(add-to-list 'load-path "~/go/src/github.com/mdempsky/gocode/emacs/")
+
+(use-package popup
+  :ensure t
+  )
+
+(use-package auto-complete
+  :ensure t
+  :after (popup)
+  )
+
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(ac-config-default)
 #+END_SRC
 
 ** iedit
