@@ -5,6 +5,13 @@
   (which-key-mode 1)
   )
 
+(defun my-cider-test-run-test ()
+  "Run `some-command' and `some-other-command' in sequence."
+  (interactive)
+  (cider-ns-refresh)
+  (cider-test-run-test)
+)
+
 (use-package general :ensure t
   :config
   (general-define-key
@@ -25,6 +32,7 @@
    "[" 'backward-sexp
    "S" 'paredit-forward-barf-sexp
    "s" 'paredit-forward-slurp-sexp
+   "/" 'projectile-grep
    )
   (general-define-key
    :states '(normal visual emacs)
@@ -32,10 +40,13 @@
    :prefix ";"
    "j" 'cider-jack-in
    "r" 'cider-switch-to-repl-buffer
-   "t" 'cider-test-run-test
+   "t" 'my-cider-test-run-test
    "p" 'cider-test-run-project-tests
-   "n" 'cljr-clean-ns
+   "o" 'cljr-clean-ns
    "f" 'cider-format-buffer
+   )
+   (general-define-key
+   "C-s" 'swiper-all
    )
   )
 #+END_SRC
@@ -184,8 +195,12 @@
   :init (custom-set-variables '(markdown-command "/usr/local/bin/pandoc")))
 #+END_SRC
 
-** ivy, counsel, projectile
+** ivy, counsel, swiper, projectile
 #+BEGIN_SRC emacs-lisp
+(use-package swiper
+  :ensure t
+  )
+
 (use-package ivy
   :ensure t
   :config
