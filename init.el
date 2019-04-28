@@ -30,9 +30,9 @@
  ;; If there is more than one, they won't work right.
  '(org-block ((t (:background "black"))))
  '(org-document-title ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande" :height 2.0 :underline nil))))
- '(org-level-1 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande" :height 1.3))))
- '(org-level-2 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande" :height 1.2))))
- '(org-level-3 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande" :height 1.1))))
+ '(org-level-1 ((t (:inherit default :foreground "#eceff4" :slant normal :weight bold :height 2.0 :width normal :foundry "nil" :family "Helvetica"))))
+ '(org-level-2 ((t (:inherit default :foreground "#eceff4" :slant normal :weight bold :height 1.6 :width normal :foundry "nil" :family "Helvetica"))))
+ '(org-level-3 ((t (:inherit default :foreground "#eceff4" :slant normal :weight normal :height 1.4 :width normal :foundry "nil" :family "Helvetica"))))
  '(org-level-4 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
  '(org-level-5 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
  '(org-level-6 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
