@@ -19,22 +19,19 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-safe-themes
+   (quote
+    ("fa2af0c40576f3bde32290d7f4e7aa865eb6bf7ebe31eb9e37c32aa6f4ae8d10" "d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "170bb47b35baa3d2439f0fd26b49f4278e9a8decf611aa33a0dad1397620ddc3" default)))
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (auto-complete auto-complete-config iedit exec-path-from-shell evil-magit magit diff-hl avy which-key general evil-leader clj-refactor cider evil-surround json-mode yaml-mode all-the-icons-ivy neotree git-gutter-fringe git-gutter doom-themes use-package smartparens rainbow-mode rainbow-delimiters projectile paredit markdown-mode highlight-parentheses god-mode evil ac-nrepl))))
+    (spacemacs-theme auto-complete auto-complete-config iedit exec-path-from-shell evil-magit magit diff-hl avy which-key general evil-leader clj-refactor cider evil-surround json-mode yaml-mode all-the-icons-ivy neotree git-gutter-fringe git-gutter doom-themes use-package smartparens rainbow-mode rainbow-delimiters projectile paredit markdown-mode highlight-parentheses god-mode evil ac-nrepl))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-block ((t (:background "black"))))
  '(org-document-title ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande" :height 2.0 :underline nil))))
- '(org-level-1 ((t (:inherit default :foreground "#eceff4" :slant normal :weight bold :height 2.0 :width normal :foundry "nil" :family "Helvetica"))))
- '(org-level-2 ((t (:inherit default :foreground "#eceff4" :slant normal :weight bold :height 1.6 :width normal :foundry "nil" :family "Helvetica"))))
- '(org-level-3 ((t (:inherit default :foreground "#eceff4" :slant normal :weight normal :height 1.4 :width normal :foundry "nil" :family "Helvetica"))))
- '(org-level-4 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
- '(org-level-5 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
  '(org-level-6 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
  '(org-level-7 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
  '(org-level-8 ((t (:inherit default :weight bold :foreground "#eceff4" :font "Lucida Grande"))))
