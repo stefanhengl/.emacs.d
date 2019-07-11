@@ -46,7 +46,7 @@
    "v" 'cider-find-var)
 
    (general-define-key
-   "C-s" 'swiper-all))
+   "C-s" 'counsel-projectile-ag))
 #+END_SRC
 
 * move lines
@@ -223,6 +223,9 @@
   (counsel-projectile-mode 1)
   )
 
+(use-package ag 
+  :ensure t)
+
 #+END_SRC
 
 * yaml
@@ -267,31 +270,35 @@
 * go
 Note: Install gocode https://github.com/mdempsky/gocode first, required for go auto-complete.
 #+BEGIN_SRC emacs-lisp
+(require 'dap-go)
 (use-package go-mode
   :ensure t
+  :init
   :config
   (progn 
-    (autoload 'go-mode "go-mode" nil t)
-    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-    (electric-pair-mode 1)
-    (add-hook 'before-save-hook #'gofmt-before-save)
-    )
-  )
+  (autoload 'go-mode "go-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  (electric-pair-mode 1)
+  (add-hook 'before-save-hook #'gofmt-before-save)))
+
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'go-mode-hook #'dap-mode)
+(add-hook 'go-mode-hook #'dap-ui-mode)
+
 
 (add-to-list 'load-path "~/go/src/github.com/mdempsky/gocode/emacs/")
 
 (use-package popup
-  :ensure t
-  )
-
+  :ensure t)
+  
 (use-package auto-complete
   :ensure t
-  :after (popup)
-  )
+  :after (popup))
 
 (require 'go-autocomplete)
 (require 'auto-complete-config)
 (ac-config-default)
+
 #+END_SRC
 
 * iedit

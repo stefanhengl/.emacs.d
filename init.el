@@ -25,7 +25,7 @@
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (spacemacs-theme auto-complete auto-complete-config iedit exec-path-from-shell evil-magit magit diff-hl avy which-key general evil-leader clj-refactor cider evil-surround json-mode yaml-mode all-the-icons-ivy neotree git-gutter-fringe git-gutter doom-themes use-package smartparens rainbow-mode rainbow-delimiters projectile paredit markdown-mode highlight-parentheses god-mode evil ac-nrepl))))
+    (dap-go ag spacemacs-theme auto-complete auto-complete-config iedit exec-path-from-shell evil-magit magit diff-hl avy which-key general evil-leader clj-refactor cider evil-surround json-mode yaml-mode all-the-icons-ivy neotree git-gutter-fringe git-gutter doom-themes use-package smartparens rainbow-mode rainbow-delimiters projectile paredit markdown-mode highlight-parentheses god-mode evil ac-nrepl))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
