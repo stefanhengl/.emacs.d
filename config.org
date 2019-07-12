@@ -17,8 +17,9 @@
    :keymaps 'override
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
-   "b" 'switch-to-buffer
-   "d" 'evil-goto-definition
+   "b" 'counsel-switch-buffer
+   "d" 'dap-debug
+   "h" 'dap-hydra
    "f" 'find-file
    "i" 'imenu
    "p" '(:keymap projectile-command-map :wk "projectile prefix" :package projectile)
@@ -46,7 +47,9 @@
    "v" 'cider-find-var)
 
    (general-define-key
-   "C-s" 'counsel-projectile-ag))
+   "C-s" 'counsel-projectile-ag
+   "C-d" 'evil-scroll-page-down
+   "C-u" 'evil-scroll-page-up))
 #+END_SRC
 
 * move lines
