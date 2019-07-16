@@ -18,7 +18,7 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
    "b" 'counsel-switch-buffer
-   "d" 'dap-debug
+   "d" 'my-debug
    "h" 'dap-hydra
    "f" 'find-file
    "i" 'imenu
@@ -31,7 +31,7 @@
    "[" 'backward-sexp
    "S" 'paredit-forward-barf-sexp
    "s" 'paredit-forward-slurp-sexp
-   "/" 'projectile-grep
+   "/" 'swiper
    "e" 'er/expand-region)
 
   (general-define-key
@@ -115,7 +115,9 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode 0)
-(global-linum-mode t)
+(global-display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
+
 #+END_SRC
 
 * evil
@@ -287,7 +289,12 @@ Note: Install gocode https://github.com/mdempsky/gocode first, required for go a
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'go-mode-hook #'dap-mode)
 (add-hook 'go-mode-hook #'dap-ui-mode)
+(add-hook 'go-mode-hook #'paredit-mode)
 
+(defun my-debug ()
+  (interactive)
+  (call-interactively 'dap-debug-last)
+  (call-interactively 'dap-hydra))
 
 (add-to-list 'load-path "~/go/src/github.com/mdempsky/gocode/emacs/")
 
