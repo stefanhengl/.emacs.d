@@ -183,6 +183,7 @@
   (paredit-mode 1))
 
 (add-hook 'clojure-mode-hook 'my-paredit-hook)
+
 #+END_SRC
 
 * markown
@@ -243,12 +244,16 @@
 
 * exec-path
 #+BEGIN_SRC emacs-lisp
+  ;; (use-package exec-path-from-shell
+    ;; :ensure t
+    ;; :config
+    ;; (when (memq window-system '(mac ns x))
+      ;; (exec-path-from-shell-initialize)))
+
 (use-package exec-path-from-shell
   :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
-  )
+  :config (exec-path-from-shell-initialize))
+
 #+END_SRC
 
 * neotree
@@ -335,3 +340,61 @@ Use shortcut C-; to mark all occurences. Edit 1 -> change all.
  
  #+END_SRC
  
+* hydra
+
+#+BEGIN_SRC emacs-lisp
+
+(defhydra hydra-window (:hint nil)
+"
+^window^
+^^^^^^^^-----------------------------------------------------------------
+_r_: right
+_b_: below
+_o_: next
+_k_: close
+_x_: kill
+_1_: close others
+"
+
+("r" split-window-right)
+("b" split-window-below)
+("k" delete-window)
+("o" other-window)
+("x" kill-buffer-and-window)
+("1" delete-other-windows)
+)
+
+(global-set-key (kbd "C-c p") 'hydra-window/body)
+ 
+
+(defhydra hydra-cider (:hint nil)
+"
+^sexp^                       ^test^                           ^misc^
+^^^^^^^^-----------------------------------------------------------------
+_r_: raise                   _p_: run all project tests       _e_: eval
+_s_: slurp                   _t_: run test                    _v_: go to definition
+_b_: barf
+"
+
+("r" raise-sexp)
+("p" cider-test-run-project-tests)
+("t" my-cider-test-run-test)
+("s" paredit-forward-slurp-sexp)
+("b" paredit-forward-barf-sexp)
+("e" cider-eval-defun-at-point)
+("v" cider-find-var)
+) 
+
+(global-set-key (kbd "C-c ;") 'hydra-cider/body)
+
+
+ #+END_SRC
+* flycheck
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :config 
+  (global-flycheck-mode))
+
+#+END_SRC
