@@ -156,28 +156,22 @@
 * code navigation
 #+BEGIN_SRC emacs-lisp
 (use-package avy 
-  :ensure t
-  )
+  :ensure t)
 
 (use-package expand-region
-  :ensure t
-  :bind (("C-c d" . er/expand-region))
-  )
+  :ensure t)
 #+END_SRC
 
 * clojure
 #+BEGIN_SRC emacs-lisp
 (use-package clj-refactor
-  :ensure t
-  )
+  :ensure t)
 
 (use-package cider
-  :ensure t
-  )
+  :ensure t)
 
 (use-package clojure-mode
-  :ensure t
-  )
+  :ensure t)
 
 (defun my-clojure-mode-hook ()
     (rainbow-delimiters-mode 1)
@@ -209,16 +203,14 @@
 * ivy, counsel, swiper, projectile
 #+BEGIN_SRC emacs-lisp
 (use-package swiper
-  :ensure t
-  )
+  :ensure t)
 
 (use-package ivy
   :ensure t
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  )
+  (setq enable-recursive-minibuffers t))
 
 (use-package counsel
   :ensure t
@@ -228,14 +220,12 @@
 (use-package projectile
   :ensure t
   :config 
-  (projectile-mode +1)
-  )
+  (projectile-mode +1))
 
 (use-package counsel-projectile
   :ensure t
   :config
-  (counsel-projectile-mode 1)
-  )
+  (counsel-projectile-mode 1))
 
 (use-package ag 
   :ensure t)
@@ -252,12 +242,6 @@
 
 * exec-path
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package exec-path-from-shell
-    ;; :ensure t
-    ;; :config
-    ;; (when (memq window-system '(mac ns x))
-      ;; (exec-path-from-shell-initialize)))
-
 (use-package exec-path-from-shell
   :ensure t
   :config (exec-path-from-shell-initialize))
@@ -271,8 +255,7 @@
   :bind (("<f8>" . neotree-toggle))
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (setq neo-window-fixed-size nil)
-  )
+  (setq neo-window-fixed-size nil))
 #+END_SRC
 
 * commenting
@@ -331,8 +314,7 @@ Note: Install gocode https://github.com/mdempsky/gocode first, required for go a
 Use shortcut C-; to mark all occurences. Edit 1 -> change all.
 #+BEGIN_SRC emacs-lisp
 (use-package iedit
-  :ensure t
-  )
+  :ensure t)
 
 #+END_SRC
 
@@ -346,16 +328,13 @@ Use shortcut C-; to mark all occurences. Edit 1 -> change all.
 (use-package py-autopep8
   :ensure t
   :init
-  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-)
+  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
 
 (require 'dap-python)
 
- 
  #+END_SRC
  
 * hydra
-
 #+BEGIN_SRC emacs-lisp
 
 (defhydra hydra-window (:hint nil)
@@ -405,7 +384,6 @@ _)_: next paren              ^ ^                              _l_: eval last
 
  #+END_SRC
 * flycheck
-
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :ensure t
