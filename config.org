@@ -32,6 +32,7 @@
    "S" 'paredit-forward-barf-sexp
    "s" 'paredit-forward-slurp-sexp
    "/" 'swiper
+   "w" 'hydra-window/body
    "e" 'er/expand-region)
 
   (general-define-key
@@ -45,6 +46,13 @@
    "o" 'cljr-clean-ns
    "f" 'cider-format-buffer
    "v" 'cider-find-var)
+
+  (general-define-key
+   :states '(normal visual emacs)
+   :keymaps 'go-mode-map
+   :prefix ";"
+   "g" 'go-run
+   "d" 'godef-describe)
 
    (general-define-key
    "C-s" 'counsel-projectile-ag
@@ -314,6 +322,9 @@ Note: Install gocode https://github.com/mdempsky/gocode first, required for go a
 (require 'auto-complete-config)
 (ac-config-default)
 
+(use-package gotest
+  :ensure t)
+
 #+END_SRC
 
 * iedit
@@ -337,6 +348,9 @@ Use shortcut C-; to mark all occurences. Edit 1 -> change all.
   :init
   (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 )
+
+(require 'dap-python)
+
  
  #+END_SRC
  
@@ -364,16 +378,14 @@ _1_: close others
 ("1" delete-other-windows)
 )
 
-(global-set-key (kbd "C-c p") 'hydra-window/body)
- 
-
 (defhydra hydra-cider (:hint nil)
 "
 ^sexp^                       ^test^                           ^misc^
 ^^^^^^^^-----------------------------------------------------------------
-_r_: raise                   _p_: run all project tests       _e_: eval
+_r_: raise                   _p_: run all project tests       _e_: eval current
 _s_: slurp                   _t_: run test                    _v_: go to definition
-_b_: barf
+_b_: barf                    _n_: refresh namespace           _c_: restart cider
+_)_: next paren              ^ ^                              _l_: eval last
 "
 
 ("r" raise-sexp)
@@ -383,10 +395,13 @@ _b_: barf
 ("b" paredit-forward-barf-sexp)
 ("e" cider-eval-defun-at-point)
 ("v" cider-find-var)
-) 
+("n" cider-ns-refresh)
+("c" cider-restart)
+(")" evil-next-close-paren)
+("l" cider-eval-last-sexp)
+)
 
 (global-set-key (kbd "C-c ;") 'hydra-cider/body)
-
 
  #+END_SRC
 * flycheck
